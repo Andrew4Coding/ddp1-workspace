@@ -11,6 +11,7 @@ class Hotel():
         self.list_of_user.append(user_name)
     def __str__(self):
         pass
+    
 class User():
     def __init__(self, name, money, list_of_hotel = []):
         self.name = name
