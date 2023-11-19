@@ -17,6 +17,7 @@ which can be displayed in a web browser.
     file_prompt = input("Please enter the file name: ")
     symbols_to_remove = r'!@#$%^&*()-_=+[{]}\|;:"\',<.>/?1234567890�ï¿½'
     dir = r'./File_Pendukung/'
+    
     file_read = open(dir + file_prompt, "r").read().lower()
     for symbol in symbols_to_remove:
         file_read = file_read.replace(symbol, '')
@@ -32,13 +33,18 @@ which can be displayed in a web browser.
     list_of_tuple = [(j, i) for i, j in list_of_tuple][:60] # Reversed the tuple config from (count, word) to (word, count)
 
     for i in range(0, len(list_of_tuple), 3):
-        a = f"{list_of_tuple[i][0]:<20} : {list_of_tuple[i][1]}"
-        b = f"{list_of_tuple[i+1][0]:<20} : {list_of_tuple[i+1][1]}"
-        c = f"{list_of_tuple[i+2][0]:<20} : {list_of_tuple[i+2][1]}"
-        print(f"{a:<30} {b:<30} {c:<30}")
+        try:
+            a = f"{list_of_tuple[i][0]:<20} : {list_of_tuple[i][1]}"
+            b = f"{list_of_tuple[i+1][0]:<20} : {list_of_tuple[i+1][1]}"
+            c = f"{list_of_tuple[i+2][0]:<20} : {list_of_tuple[i+2][1]}"
+            print(f"{a:<30} {b:<30} {c:<30}")
+        except:
+            pass
 
+    
     high_count = list_of_tuple[0][1]
     low_count = list_of_tuple[-1][1]
+    list_of_tuple.sort()
     body=''
 
     for word, cnt in list_of_tuple:

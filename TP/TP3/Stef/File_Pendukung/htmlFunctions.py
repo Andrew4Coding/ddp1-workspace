@@ -39,12 +39,15 @@ def make_HTML_box(body):
     box_str = """<div style=\"
     width: 50%;
     padding: 20px;
-    font-family: 'Space Grotesk';
+    font-family: 'Poppins';
+    font-weight: light;
     background-color: rgb(250,250,250);
-    border: 1px grey solid;
-    border-radius: 20px;
-    text-align: center\" >{:s}</div>
+    border-radius: 25px;
 
+    box-shadow: 8px 10px 73px -21px rgba(0,0,0,0.41);
+    -webkit-box-shadow: 8px 10px 73px -21px rgba(0,0,0,0.41);
+    -moz-box-shadow: 8px 10px 73px -21px rgba(0,0,0,0.41);
+    text-align: center;\" >{:s}</div>
     """
     return box_str.format(body)
 
@@ -62,13 +65,22 @@ def print_HTML_file(body,title, dir=r'./HTML_Folder/'):
         "> <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
     <title>"""+title+"""</title>
     </head>
 
-    <body>
-    <h1>"""+title+'</h1>'+'\n'+body+'\n'+"""
-    </body> </html>
+    <body style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins';
+        background-color: #252B48;
+        color: white;
+    ">
+    <h1>"""+title+'.txt'+'</h1>'+'\n'+body+'\n'+"""
+    </body >
+    </html>
     """
     fd.write(the_str)
     fd.close()
