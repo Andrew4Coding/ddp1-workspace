@@ -13,3 +13,11 @@ def ratakan(lst):
         return ratakan(lst[1:])
 
 print(ratakan([[1, 2, 3], 'A', 2, [1]]))
+
+def gcd(a, b):
+    if b == 0:
+        return a
+    else:
+        return (b, a%b)
+
+print(gcd(8, 32))

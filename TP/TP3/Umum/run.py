@@ -3,8 +3,11 @@ import time
 
 def main():
     start = time.time()
-    dataframe = read_csv("test1.csv")
-    print(to_list(dataframe))
+    dataframe = read_csv("abalone.csv")
+    print(head(sorted_dataframe(dataframe, 'Sex'), 100))
+
+
+    custom_plot(dataframe, 'Length', 'Diameter', 'Height')
 
     end = time.time()
 

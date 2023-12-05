@@ -1,12 +1,11 @@
 # Import Necessary Library
 from tkinter import *
-from tkinter.ttk import Entry
 from tkinter.colorchooser import askcolor
 from tkinter import messagebox
 
 # Mainwindow Class
 class MainWindow:
-    def __init__(self):
+    def __init__(self, is_unit_test = False, barcode_inputs = '', eps_file_name = ''):
         # Window Setup
         self.window = Tk()
         self.window.title('EAN-13 [by Andrew D.A.]')
@@ -14,7 +13,6 @@ class MainWindow:
         self.window.resizable(False, False)
 
         frame1 = Frame(self.window)
-        frame1.pack()
 
         # Form 1 - EPS File Name Entry
         self.eps_file_name = StringVar()
@@ -67,6 +65,7 @@ class MainWindow:
         self.scale.grid(row=1, column=3, columnspan=2)
 
         # Load and Positioning Element
+        frame1.pack()
         label1.grid(row=1, column=1)
         eps_input.grid(row=2, column=1)
 
@@ -80,11 +79,20 @@ class MainWindow:
 
         self.barcode.pack(pady=10)
 
+        # Unit test
+        if is_unit_test and barcode_inputs != '' and eps_file_name != '':
+            self.unit_test(barcode_inputs, eps_file_name)
+
         # MainWindow will closed if Escape is clicked
         self.window.bind('<Escape>', self.close_window)
 
         self.window.mainloop()
     
+    def unit_test(self, barcode_inputs, eps_file_name):
+        self.decimal_digits_input.set(barcode_inputs)
+        self.eps_file_name.set(eps_file_name)
+        self.barcode.enter(barcode_inputs, eps_file_name, self.bar_color.get(), self.border_color.get(), bar_width=self.bar_width.get())
+
     def close_window(self, event):
         self.window.withdraw()
         exit()
@@ -256,6 +264,9 @@ class Barcode(Canvas):
 
         # End Bar - 101
         self.draw_bar('101', bar_height=210,  custom_color=self.border_color)
+
+def unit_test(barcode_inputs, file_name):
+    generate = MainWindow(True, barcode_inputs, file_name)
 
 def main():
     MainWindow()
