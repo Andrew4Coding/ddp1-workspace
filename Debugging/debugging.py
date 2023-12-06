@@ -21,3 +21,15 @@ def gcd(a, b):
         return (b, a%b)
 
 print(gcd(8, 32))
+
+def power(x):
+    return lambda y: y ** x
+
+
+def addmany(*a):
+    return sum(a)
+
+hei = lambda *a: sum(a)
+
+print(addmany(1, 2, 3))
+

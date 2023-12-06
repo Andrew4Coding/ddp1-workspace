@@ -265,9 +265,15 @@ class Barcode(Canvas):
         # End Bar - 101
         self.draw_bar('101', bar_height=210,  custom_color=self.border_color)
 
-def unit_test(barcode_inputs, file_name):
-    generate = MainWindow(True, barcode_inputs, file_name)
+def unit_test(barcode_inputs_with_check_sum, file_name):
+    if len(barcode_inputs_with_check_sum) != 13 or not barcode_inputs_with_check_sum.isdigit():
+        print("Barcode Inputs are not valid!")
+    else:
+        # Generate a window with already generated barcode based on input digits
+        window = MainWindow(True, barcode_inputs_with_check_sum[:12], file_name)
 
+        # Check if our checksum is equal to generated checksum
+        assert window.barcode.calculate_check_digit() == barcode_inputs_with_check_sum[-1]
 def main():
     MainWindow()
 
