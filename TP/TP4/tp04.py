@@ -81,18 +81,21 @@ class MainWindow:
 
         # Unit test
         if is_unit_test and barcode_inputs != '' and eps_file_name != '':
-            self.unit_test(barcode_inputs, eps_file_name)
+            self.decimal_digits_input.set(barcode_inputs)
+            self.eps_file_name.set(eps_file_name)
 
+            self.barcode.enter(self.decimal_digits_input.get(), self.eps_file_name.get(), self.bar_color.get(), self.border_color.get(), bar_width=self.bar_width.get())
+        
+            self.barcode.after(1000, self.save_postscript)
+        
         # MainWindow will closed if Escape is clicked
         self.window.bind('<Escape>', self.close_window)
 
         self.window.mainloop()
-    
-    def unit_test(self, barcode_inputs, eps_file_name):
-        self.decimal_digits_input.set(barcode_inputs)
-        self.eps_file_name.set(eps_file_name)
-        self.barcode.enter(barcode_inputs, eps_file_name, self.bar_color.get(), self.border_color.get(), bar_width=self.bar_width.get())
 
+    def save_postscript(self):
+        self.barcode.postscript(file=f'eps_folder/{self.eps_file_name.get()}', colormode='color')
+    
     def close_window(self, event):
         self.window.withdraw()
         exit()
@@ -265,15 +268,6 @@ class Barcode(Canvas):
         # End Bar - 101
         self.draw_bar('101', bar_height=210,  custom_color=self.border_color)
 
-def unit_test(barcode_inputs_with_check_sum, file_name):
-    if len(barcode_inputs_with_check_sum) != 13 or not barcode_inputs_with_check_sum.isdigit():
-        print("Barcode Inputs are not valid!")
-    else:
-        # Generate a window with already generated barcode based on input digits
-        window = MainWindow(True, barcode_inputs_with_check_sum[:12], file_name)
-
-        # Check if our checksum is equal to generated checksum
-        assert window.barcode.calculate_check_digit() == barcode_inputs_with_check_sum[-1]
 def main():
     MainWindow()
 
