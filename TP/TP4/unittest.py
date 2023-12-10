@@ -1,8 +1,6 @@
 from tp04 import *
 
-# Fitbar
 # Barcode inputs include check sum (last digit included)
-
 def unit_test(barcode_inputs_with_check_sum, file_name):
     # Aspect 1: Check if barcode inputs were correct
     if len(barcode_inputs_with_check_sum) != 13 or not barcode_inputs_with_check_sum.isdigit():
@@ -13,7 +11,7 @@ def unit_test(barcode_inputs_with_check_sum, file_name):
 
         window = MainWindow(True, barcode_inputs_with_check_sum[:12], file_name)
 
-        # Aspect 3: Check if checksum in barocode = check sum that calculated via the functiion
+        # Aspect 3: Check if checksum in barocode = check sum that calculated via the function
         # Check if our checksum is equal to generated checksum
         if window.barcode.calculate_check_digit() == barcode_inputs_with_check_sum[-1]:
             print(f"Checksum is safe! {window.barcode.calculate_check_digit()} == {barcode_inputs_with_check_sum[-1]}\
