@@ -1,6 +1,8 @@
-### Andrew DDP1 Personal Repository
+# Andrew DDP1 Personal Repository
 
 ## 👋 Hello Friends! 👋
+
+### Lecturer: Drs. Lim Yohanes Stefanus, M.Math., Ph.D.
 
 This is my Dasar Dasar Pemrograman 1 (Basic of Programming 1) repository. 
 
@@ -17,6 +19,6 @@ It contains all of my code during the first semester. For those of you who are s
 * HTML _.html_ (Just for TP3)
 * Postscript _.eps_ (Just for TP4)
 
-# Happy to help, fellas!
+### Happy to help, fellas!
 
 ~ From Andrew to Adting!
