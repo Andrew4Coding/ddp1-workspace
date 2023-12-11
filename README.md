@@ -6,6 +6,8 @@
 
 This is my Dasar Dasar Pemrograman 1 (Basic of Programming 1) repository. 
 
+~~No Chat GPT Used!~~
+
 It contains all of my code during the first semester. For those of you who are struggling, I hope these codes help your way through the first semester!
 
 ## Table Of Contents:
